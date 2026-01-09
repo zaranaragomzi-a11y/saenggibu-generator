@@ -17,7 +17,7 @@ uploaded_file = st.file_uploader(
 
 # 2. 옵션
 subject = st.selectbox("과목", ["화학", "물리", "생명과학", "지구과학", "기타"])
-byte_limit = st.selectbox("글자 수 제한", [100, 200, 300])
+byte_limit = st.selectbox("글자 수 제한", [500, 750, 1500])
 
 # 3. 추가 프롬프트
 extra_prompt = st.text_area(
