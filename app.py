@@ -1,13 +1,12 @@
 import streamlit as st
 from openai import OpenAI
 
+from prompt import BASE_PROMPT
+from utils import extract_text_from_pdf
+
 client = OpenAI(
     api_key=st.secrets["OPENAI_API_KEY"]
 )
-
-from prompt import BASE_PROMPT
-from utils import extract_text_from_pdf
-import os
 
 st.set_page_config(page_title="세특 생성기", layout="wide")
 st.title("📘 세특 초안 자동 생성기")
