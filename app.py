@@ -1,5 +1,10 @@
 import streamlit as st
-import openai
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=st.secrets["OPENAI_API_KEY"]
+)
+
 from prompt import BASE_PROMPT
 from utils import extract_text_from_pdf
 import os
@@ -43,12 +48,11 @@ if st.button("세특 생성"):
 {text}
 """
 
-            response = openai.ChatCompletion.create(
-                model="gpt-4.1",
-                messages=[{"role": "user", "content": final_prompt}],
-                temperature=0.3
-            )
+            response = client.chat.completions.create(
+    model="gpt-4.1",
+    messages=[{"role": "user", "content": final_prompt}],
+    temperature=0.3
+)
 
-            result = response.choices[0].message.content
-            st.subheader("📄 생성된 세특")
-            st.text_area("", result, height=200)
+result = response.choices[0].message.content
+st.text_area("생성된 세특", result, height=200)
